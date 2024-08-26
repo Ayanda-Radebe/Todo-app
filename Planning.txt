@@ -92,7 +92,7 @@ Remove default files and boilerplate code from Create React App to start fresh.
 
 4.2. Task Filtering
 
-    Due Date: Allow filtering tasks based on due date.
+    Due Date: Allows user to filtering tasks based on due date. 
     Priority Level: Filter tasks by priority (High, Medium, Low).
     Status: Filter tasks based on their status (Incomplete, Complete).
 
