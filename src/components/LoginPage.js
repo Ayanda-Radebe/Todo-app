@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import '../styles/LoginPage.css'; 
+import React, { useState } from "react";
+import "../styles/LoginPage.css";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -14,12 +14,20 @@ function LoginPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (!email || !password) {
-      setError("Both fields are required");
+
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (!storedUser) {
+      setError("No registered user found.");
       return;
     }
-    setError("");
-    console.log("Logging in with", { email, password });
+
+    if (email === storedUser.email && password === storedUser.password) {
+      setError("");
+      console.log("Login successful");
+    } else {
+      setError("Incorrect details");
+    }
   }
 
   return (
@@ -27,7 +35,7 @@ function LoginPage() {
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="email">Email Address:</label>
+          <label htmlFor="email">Username:</label>
           <input
             type="email"
             id="email"

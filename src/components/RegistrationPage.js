@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/RegistrationPage.css";
 
 function RegistrationPage() {
@@ -8,6 +9,7 @@ function RegistrationPage() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -26,13 +28,17 @@ function RegistrationPage() {
     }
     setError("");
     console.log("Registering", { name, email, country, phone, password });
+
+    localStorage.setItem('user',JSON.stringify( {email,password}));
+
     setName("");
     setEmail("");
     setCountry("");
     setPhone("");
     setPassword("");
+    navigate('/')
   }
-
+  
   return (
     <div className="registration-container">
       <h1>Register</h1>
